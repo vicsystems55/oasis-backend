@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\VimeoController;
 
+use App\Http\Controllers\ApiAuthController;
+
+use App\Http\Controllers\ApplicationSubmissionController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,3 +26,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('/vimeo', [VimeoController::class, 'getMovies']);
+
+Route::post('/register', [ApiAuthController::class, 'register']);
+
+Route::post('/login', [ApiAuthController::class, 'login']);
+
+
+Route::post('/verify_otp', [ApiAuthController::class, 'verify_otp'])->middleware('auth:sanctum');
+
+
+Route::post('/update_application', [ApplicationSubmissionController::class, 'update_application'])->middleware('auth:sanctum');
+

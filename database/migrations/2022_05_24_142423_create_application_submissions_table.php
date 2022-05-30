@@ -15,6 +15,27 @@ class CreateApplicationSubmissionsTable extends Migration
     {
         Schema::create('application_submissions', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->unsigned();
+
+            $table->string('nationality')->nullable();
+            $table->string('state')->nullable();
+            $table->string('address')->nullable();
+            $table->date('dob')->nullable();
+            $table->boolean('under_contract')->nullable();
+            $table->integer('contract_duration')->nullable();
+            $table->boolean('health_condition')->nullable();
+            $table->string('health_condition_desc')->nullable();
+
+            $table->string('guardian_name')->nullable();
+            $table->string('guardian_phone')->nullable();
+            $table->string('guardian_address')->nullable();
+
+            $table->string('video_id')->nullable()->nullable();
+            
+            $table->string('transaction_id')->nullable()->nullable();
+            $table->string('status')->default('active');
+
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
