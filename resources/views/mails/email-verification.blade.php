@@ -7,7 +7,7 @@
 <h1> Hello, {{$data['name']}} </h1>
 
 <p style="color: black;">
-    Welcome to Oasis Football Scouting, use the OTP below to verify your email.
+    Welcome to Oasis Football Scouting, use the Code below to verify your email.
 </p>
 
     

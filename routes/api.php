@@ -37,3 +37,5 @@ Route::post('/verify_otp', [ApiAuthController::class, 'verify_otp'])->middleware
 
 Route::post('/update_application', [ApplicationSubmissionController::class, 'update_application'])->middleware('auth:sanctum');
 
+Route::post('/playersData', [ApplicationSubmissionController::class, 'playersData'])->middleware('auth:sanctum');
+

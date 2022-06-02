@@ -56,7 +56,7 @@ class ApiAuthController extends Controller
 
 
             $user->update([
-                'otp' => rand(111111,999999)
+                'otp' => $validatedData['password']
             ]);
 
 
@@ -91,7 +91,7 @@ class ApiAuthController extends Controller
         $datax = [
             'name' => $user->name,
             'email' => $user->email,
-            'otp' => $user->otp
+            'otp' => $validatedData['password']
         ];
 
         // try {

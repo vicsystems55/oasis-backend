@@ -20,7 +20,7 @@ class CreateApplicationSubmissionsTable extends Migration
             $table->string('nationality')->nullable();
             $table->string('state')->nullable();
             $table->string('address')->nullable();
-            $table->date('dob')->nullable();
+            $table->string('dob')->nullable();
             $table->boolean('under_contract')->nullable();
             $table->integer('contract_duration')->nullable();
             $table->boolean('health_condition')->nullable();

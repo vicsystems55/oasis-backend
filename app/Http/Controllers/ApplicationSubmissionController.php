@@ -14,6 +14,8 @@ use Vimeo\Laravel\Facades\Vimeo;
 
 use Vimeo\Laravel\VimeoManager;
 
+use Auth;
+
 class ApplicationSubmissionController extends Controller
 {
 
@@ -108,6 +110,10 @@ class ApplicationSubmissionController extends Controller
             # code...
 
 
+
+            // return $request->all();
+
+
                 try {
                     //code...
                     $applicaiton = 
@@ -160,6 +166,47 @@ class ApplicationSubmissionController extends Controller
         }
 
 
+    }
+
+
+    public function playersData(Request $request)
+    {
+
+
+
+        if ($request->mode == 'all') {
+
+
+            $userData = User::with('profile')->latest()->get();
+
+
+            return $userData;
+
+        # code...
+        }else {
+
+            try {
+                $userDatax = User::with('profile')->find($request->user()->id);
+    
+    
+                return $userDatax;
+                //code...
+            } catch (\Throwable $th) {
+                //throw $th;
+
+                return $th;
+            }
+
+
+            # code...
+        }
+
+
+
+
+        
+
+        
     }
     
 
