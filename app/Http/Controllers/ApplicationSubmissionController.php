@@ -172,11 +172,25 @@ class ApplicationSubmissionController extends Controller
     public function playersData(Request $request)
     {
 
+        if ($request->player_code) {
+            # code...
+
+
+            $userData = User::with('profile')->where('usercode', $request->player_code)->first();
+
+
+            return $userData;
+
+
+
+        }
+
 
 
         if ($request->mode == 'all') {
 
 
+            
             $userData = User::with('profile')->latest()->get();
 
 
