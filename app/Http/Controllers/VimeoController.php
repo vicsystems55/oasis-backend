@@ -50,12 +50,9 @@ class VimeoController extends Controller
         ]);
 
         ApplicationSubmission::where('user_id', $request->user()->id)->update([
-            'video_id' => $data['data']
+            'video_id' =>  trim($data['data'], '/videos/')
         ]);
 
-
-
-        
 
 
         return $data;
