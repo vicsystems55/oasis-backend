@@ -33,6 +33,9 @@ class ApplicationSubmissionController extends Controller
         $user_code = $request->user()->usercode;
 
 
+      
+
+
         if ($request->mode == 'avatar') {
             # code...
 
@@ -115,42 +118,44 @@ class ApplicationSubmissionController extends Controller
 
 
                 try {
-                    //code...
-                    $applicaiton = 
-                    ApplicationSubmission::where('user_id', $user_id)->update([
-        
-                        'nationality' => $request->nationality,
-                        'state' => $request->state,
-                        'address' => $request->address,
-                        'dob' => $request->dob,
-                        'under_contract' => $request->under_contract,
-                        'contract_duration' => $request->contract_duration,
-                        'health_condition' => $request->health_condition,
-                        'health_condition_desc' => $request->health_condition_desc,
-                        'guardian_name' => $request->guardian_name,
-                        'guardian_phone' => $request->guardian_phone,
-                        'guardian_address' => $request->guardian_address,
-                        'transaction_id' => $request->transaction_id,
-        
-                    ]);
-        
-        
-                    Notification::create([
-                        'user_id' => 1001,
-                        'title' => 'New Application',
-                        'message' => 'Application successfully submitted by '. $user_name.' with email: '.$user_email
-                    ]);
-        
-                    Notification::create([
-                        'user_id' => $user_id,
-                        'title' => 'Successful Application',
-                        'message' => 'Your application ['.$user_code .'] - video clip, and bio data - have been submitted successfully'
-                    ]);
-
-
-
                     
-                return $applicaiton;
+                        
+                        $applicationx = 
+                        ApplicationSubmission::where('user_id', $user_id)->updateOrCreate([
+                            'user_id' => $user_id
+                        ],[
+
+                            'nationality' => $request->nationality,
+                            'state' => $request->state,
+                            'address' => $request->address,
+                            'dob' => $request->dob,
+                            'under_contract' => $request->under_contract,
+                            'contract_duration' => $request->contract_duration,
+                            'health_condition' => $request->health_condition,
+                            'health_condition_desc' => $request->health_condition_desc,
+                            'guardian_name' => $request->guardian_name,
+                            'guardian_phone' => $request->guardian_phone,
+                            'guardian_address' => $request->guardian_address
+                          
+            
+                        ]);
+            
+            
+                        Notification::create([
+                            'user_id' => 1001,
+                            'title' => 'New Application',
+                            'message' => 'Application successfully submitted by '. $user_name.' with email: '.$user_email
+                        ]);
+            
+                        Notification::create([
+                            'user_id' => $user_id,
+                            'title' => 'Successful Application',
+                            'message' => 'Your application ['.$user_code .'] - video clip, and bio data - have been submitted successfully'
+                        ]);
+
+
+                        return $applicationx;
+
 
 
         
