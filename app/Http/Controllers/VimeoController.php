@@ -8,6 +8,10 @@ use Vimeo\Laravel\Facades\Vimeo;
 
 use Vimeo\Laravel\VimeoManager;
 
+use App\Models\ApplicationSubmission;
+
+use Auth;
+
 class VimeoController extends Controller
 {
     //
@@ -44,6 +48,12 @@ class VimeoController extends Controller
             'name' => 'name',
             'description' => 'description'
         ]);
+
+        ApplicationSubmission::where('user_id', $request->user()->id)->update([
+            'video_id' => $data['data']
+        ]);
+
+
 
         
 
