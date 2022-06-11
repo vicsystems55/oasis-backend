@@ -89,7 +89,7 @@ class ApplicationSubmissionController extends Controller
 
 
                 $applicaiton = ApplicationSubmission::where('user_id', $user_id)->update([
-                    'video_id' => trim($data['data'], '/videos/')
+                    'video_id' => trim($data->data, '/videos/')
                 ]);
         
                 
