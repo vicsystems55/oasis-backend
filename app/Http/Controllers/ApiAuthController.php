@@ -48,6 +48,7 @@ class ApiAuthController extends Controller
             $user = User::create([
                 'name' => $validatedData['name'],
                 'email' => $validatedData['email'],
+                'role' => 'footballer',
                 // 'username' => $validatedData['username'],
                 'usercode' => $regCode,
                 // 'sponsors_id' => $validatedData['referrer_code'],

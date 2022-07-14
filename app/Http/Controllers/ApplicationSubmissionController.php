@@ -87,11 +87,11 @@ class ApplicationSubmissionController extends Controller
                     'description' => $user_email.'- ' .$user_code,
                 ]);
 
-                $vvv = $data['data'];
+                // $vvv = $data['data'];
 
 
                 $applicaiton = ApplicationSubmission::where('user_id', $user_id)->update([
-                    'video_id' => trim($vvv, '/videos/')
+                    'video_id' => $data
                 ]);
         
                 
