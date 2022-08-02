@@ -82,23 +82,35 @@ class ApplicationSubmissionController extends Controller
                 ]);
         
         
-                $data = Vimeo::upload($request->video,[
-                    'name' => $user_name.'- ' .$user_code,
-                    'description' => $user_email.'- ' .$user_code,
-                ]);
+                // $data = Vimeo::upload($request->video,[
+                //     'name' => $user_name.'- ' .$user_code,
+                //     'description' => $user_email.'- ' .$user_code,
+                // ]);
 
-                // $vvv = $data['data'];
+                // // $vvv = $data['data'];
+
+
+                // $applicaiton = ApplicationSubmission::where('user_id', $user_id)->update([
+                //     'video_id' => $data
+                // ]);
+
+
+                $doc = $request->file('video');
+        
+                $new_name = rand().".".$doc->getClientOriginalExtension();
+                
+                $file1 = $doc->move(public_path('videos'), $new_name);
 
 
                 $applicaiton = ApplicationSubmission::where('user_id', $user_id)->update([
-                    'video_id' => $data
+                    'video_id' => config('app.url').'videos/'.$new_name
                 ]);
         
                 
         
         
                 return $datax = [
-                    'data' => $data,
+                    'data' => $data??'',
                     'application' => $applicaiton
                 ];
 
@@ -107,7 +119,7 @@ class ApplicationSubmissionController extends Controller
             } catch (\Throwable $th) {
                 //throw $th;
 
-                return $th;
+                return $th->errors();
             }
         }
 
